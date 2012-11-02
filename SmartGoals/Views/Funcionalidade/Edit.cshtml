@@ -1,0 +1,41 @@
+﻿@model SmartGoals.Models.Fucionalidade
+@{
+    ViewBag.Title = "Edit";
+}
+@using (Html.BeginForm("Edit", "Funcionalidade", FormMethod.Post, new { @id = "mainForm", @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Perfil</legend>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">@Html.LabelFor(model => model.Nome)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn" })
+        </div>
+    </fieldset>
+}
+<script>
+    $("#mainForm").validate({
+        highlight: function (element, errorClass) {
+            $(element).parents("div[class='control-group'] :eq(0)").addClass("control-group error");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents("div[class='control-group'] :eq(0)").removeClass("error");
+        },
+        rules: {
+            Nome: "required"
+            
+
+        },
+        messages: {
+            Nome: "Campo Obrigatório"
+        }
+    });
+
+</script>

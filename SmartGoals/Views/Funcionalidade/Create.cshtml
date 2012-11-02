@@ -1,0 +1,32 @@
+﻿@model SmartGoals.Models.Fucionalidade
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm("Create", "Funcionalidade", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+  
+    <fieldset>
+        <legend>Funcionalidade</legend>
+        <div class="control-group">
+            <label class="control-label" for="idProjeto">
+                @Html.LabelFor(model => model.Nome)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="idProjeto">
+                @Html.LabelFor(model => model.Controller)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Controller)
+                @Html.ValidationMessageFor(model => model.Controller)
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

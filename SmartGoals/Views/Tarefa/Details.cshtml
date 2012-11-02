@@ -1,0 +1,111 @@
+﻿@model SmartGoals.Models.Tarefa
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index")">Tarefa</a> <span class="divider">/</span></li>
+    <li class="active">@ViewBag.Title</li>
+</ul>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li class="active"><a href="@Url.Action("Index")">Detalhes</a></li>
+            <li><a href="@Url.Action("Edit", new { id = Model.Id })">Editar</a></li>
+            <li><a href="/Usuario/@Model.Id/0/Tarefa/Create">Nova Tarefa</a></li>
+        </ul>
+    </div>
+</div>
+<div class="bmds-content">
+    <h3>@Model.Nome</h3>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td style="width: 120px;" class="control-label">
+                    Nome
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Nome)</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Descricao
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Descricao)
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Inicio
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Inicio)
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Fim
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Fim)
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Usuario
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Usuario.Username)
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Horas
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Horas)
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Prioridade
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Prioridade)
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Grupo
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TarefaGrupo.Nome)
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Horas Gastas
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.HorasGastas)
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Tarefas
+                </td>
+               <td >
+                  
+                </td>
+               
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

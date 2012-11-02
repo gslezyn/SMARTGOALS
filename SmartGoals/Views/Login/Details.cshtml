@@ -1,0 +1,47 @@
+﻿@model SmartGoals.Models.Usuario
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Usuario</legend>
+    
+        <div class="display-label">Username</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Username)
+        </div>
+    
+        <div class="display-label">Senha</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Senha)
+        </div>
+    
+        <div class="display-label">Email</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+    
+        <div class="display-label">Nome</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+    
+        <div class="display-label">Telefone</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Telefone)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

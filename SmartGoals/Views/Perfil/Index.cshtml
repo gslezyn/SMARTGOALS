@@ -1,0 +1,90 @@
+﻿@model IEnumerable<SmartGoals.Models.Perfil>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/Perfil/Index">Perfil</a><span class="divider">/</span></li>
+    <li class="active">@ViewBag.Title</li>
+</ul>
+<p>
+    @Html.ActionLink("Novo Perfil", "Create", new { }, new { @class = "btn" })
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th style="width: 30px;">
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-mini">Opções</a>
+                    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="javascript:Deletar(@item.Id)">Apagar</a></li>
+                        <li>@Html.ActionLink("Editar", "Edit", new { @id = @item.Id })</li>
+                     
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    @using (Html.BeginForm("DeleteConfirmed", "Perfil", FormMethod.Post, null))
+    {
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×</button>
+            <h3 id="myModalLabel">
+                Delete</h3>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" name="Id" id="IdDelete" />
+            <p>
+                Deseja Excluir esse Perfil?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                Voltar</button>
+            <button type="submit" class="btn btn-primary">
+                Deletar</button>
+        </div>
+    }
+</div>
+<script>
+
+    $(function () {
+
+
+
+
+
+
+
+        $('#myModal').modal();
+        $('#myModal').modal('hide');
+    });
+
+    function Deletar(id) {
+
+        $('#IdDelete').val(id);
+
+        $('#myModal').modal('show');
+    }
+
+        
+      
+</script>

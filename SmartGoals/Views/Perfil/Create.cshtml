@@ -1,0 +1,47 @@
+﻿@model SmartGoals.Models.Perfil
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm("Create", "Perfil", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+  
+    <fieldset>
+        <legend>Perfil</legend>
+        <div class="control-group">
+            <label class="control-label" for="idProjeto">
+                @Html.LabelFor(model => model.Nome)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">
+                Funcionalidades:</label>
+            <div class="controls">
+                <table class="table table-bordered table-condensed" style="width: 300px;">
+                    <tbody>
+                        <tr>
+                            @foreach (var item in @ViewBag.Funcionalidades)
+                            {
+                                <tr>
+                                    <td style="width: 30px;">
+                                        <input type="checkbox" id="@item.Id" name="@item.Id" value="@item.Id" />
+                                    </td>
+                                    <td>
+                                        @item.Nome
+                                    </td>
+                                </tr>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

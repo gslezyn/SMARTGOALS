@@ -1,0 +1,103 @@
+﻿@model SmartGoals.Models.Cliente
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index")">Clientes</a> <span class="divider">/</span></li>
+    <li class="active">@ViewBag.Title</li>
+</ul>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li class="active"><a href="@Url.Action("Index")">Detalhes</a></li>
+            <li><a href="@Url.Action("Edit", new { id = Model.Id })">Editar</a></li>
+            <li><a href="/Projeto/Create/@Model.Id">Novo Projeto</a></li>
+            <li><a href="/Cliente/@Model.Id/Contato/Create">Novo Contato</a></li>
+        </ul>
+    </div>
+</div>
+<div class="bmds-content">
+    <h3>@Model.Nome</h3>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td style="width: 120px;" class="control-label">
+                    Nome
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Nome)</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    E-mail
+                </td>
+                <td>
+                    @Model.Email
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Telefone
+                </td>
+                <td>
+                    @Model.Telefone
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Endereço
+                </td>
+                <td>
+                    @Model.Endereco
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Contatos
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Projetos
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tbody>
+                            @foreach (SmartGoals.Models.Projeto p in Model.Projeto)
+                            {
+                                <tr>
+                                    <td>
+                                        @p.Nome
+                                    </td>
+                                    <td style="width: 20px;">
+                                        @Html.ActionLink("Detalhes", "Details", "Projeto", new { Id = p.Id }, new { @class = "btn btn-mini btn-info" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })

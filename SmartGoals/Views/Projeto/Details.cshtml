@@ -1,0 +1,108 @@
+﻿@model SmartGoals.Models.Projeto
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index", "Projeto")">Projeto</a> <span class="divider">/</span></li>
+    <li class="active">@ViewBag.Title</li>
+</ul>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li class="active"><a href="#">Detalhes</a></li>
+            <li><a href="@Url.Action("Edit", new { id = Model.Id })">Editar</a></li>
+            <li class="dropdown"><a href="#" id="drop2" role="button" class="dropdown-toggle"
+                data-toggle="dropdown">Atividade<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                    <li><a href="/Projeto/@Model.Id/TarefaGrupo/Create">Novo Grupo</a></li>
+                    <li><a tabindex="-1" href="/TarefaGrupo/Index/@Model.Id">Lista de Tarefas</a></li>
+                    <li class="divider"></li>
+                   @* <li><a tabindex="-1" href="#">Relatório</a></li>*@
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="bmds-content">
+    <h3>@Model.Nome</h3>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td style="width: 120px;" class="control-label">
+                    Descrição
+                </td>
+                <td>@Model.Descricao
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Início
+                </td>
+                <td>@Model.Inicio
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Término
+                </td>
+                <td>@Model.Fim
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Ativo
+                </td>
+                <td>@Model.Ativo
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    @using (Html.BeginForm("NovoGrupo", "Projeto", FormMethod.Post, new { @class = "form-horizontal", @id = "formGrupo" }))
+    {
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×</button>
+            <h3 id="myModalLabel">
+                Modal header</h3>
+        </div>
+        <div class="modal-body">
+            @Html.HiddenFor(o => o.Id)
+            <label class="control-label" for="Nome">
+                Nome</label>
+            <div class="controls">
+                <input type="text" name="NomeGrupo" id="NomeGrupo" />
+            </div>
+            <p>
+            </p>
+            <p style="text-align: center;">
+                <input type="submit" value="Salvar" id="btnSalvarGrupo" class="btn btn-primary" />
+                <input type="button" value="Fechar" id="btnClose" class="btn" />
+            </p>
+        </div>
+    }
+</div>
+<script>
+
+    $(function () {
+        $('.dropdown-toggle').dropdown();
+        $('#formGrupo').on('submit', salvarGrupo);
+
+    });
+
+    function salvarGrupo(e) {
+
+        e.preventDefault();
+
+        $.ajax({
+            url: '@Url.Action("NovoGrupo")',
+            data: $('#formGrupo').serialize(),
+            type: 'POST',
+            success: function () { alert('Grupo cadastrado!'); },
+            error: function () { alert('Erro!'); }
+        });
+    }
+</script>

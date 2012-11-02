@@ -1,0 +1,66 @@
+﻿@model SmartGoals.Models.Projeto
+@{
+    ViewBag.Title = "Novo Projeto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index")">Clientes</a> <span class="divider">/</span></li>
+    <li class="active">@ViewBag.Title</li>
+</ul>
+@using (Html.BeginForm("Create", "Projeto", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    
+    <div class="bmds-content">
+        <legend>Novo Projeto</legend>
+        @Html.ValidationSummary(true)
+        <div class="control-group">
+            <label class="control-label" for="Nome">
+                Nome</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Descricao">
+                Descrição</label>
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Descricao)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Inicio">
+                Início</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Inicio)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Fim">
+                Fim</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Fim)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="IdCliente">
+                Cliente</label>
+            <div class="controls">
+                @Html.DropDownList("IdCliente", String.Empty)
+            </div>
+        </div>
+    </div>   
+    <div class="form-actions">
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+        @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
+    </div>
+
+}
+<script>
+
+    $(function () {
+
+        $('#Inicio').datepicker();
+        $('#Fim').datepicker();
+
+    });
+</script>

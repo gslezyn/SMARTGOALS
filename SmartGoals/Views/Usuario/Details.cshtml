@@ -1,0 +1,79 @@
+﻿@model SmartGoals.Models.Usuario
+@{
+    ViewBag.Title = "Create";
+}
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index")">Clientes</a> <span class="divider">/</span></li>
+    <li class="active">@ViewBag.Title</li>
+</ul>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li class="active"><a href="@Url.Action("Index")">Detalhes</a></li>
+            <li><a href="@Url.Action("Edit", new { id = Model.Id })">Editar</a></li>
+            <li><a href="/Usuario/@Model.Id/0/Tarefa/Create">Nova Tarefa</a></li>
+            
+        </ul>
+    </div>
+</div>
+<div class="bmds-content">
+    <h3>@Model.Nome</h3>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td style="width: 120px;" class="control-label">
+                    Nome
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Nome)</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    E-mail
+                </td>
+                <td>
+                    @Model.Email
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Telefone
+                </td>
+                <td>
+                    @Model.Telefone
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Usuario
+                </td>
+                <td>
+                    @Model.Username
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label">
+                    Tarefas
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var item in Model.Tarefa)
+                        {
+                            <li>@item.Nome</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
+<script>
+    $(function () {
+        $('input').each(function () {
+            $(this).attr('disabled', 'disabled');
+        });
+    });
+</script>

@@ -1,0 +1,79 @@
+﻿@model SmartGoals.Models.Usuario
+@{
+    ViewBag.Title = "Create";
+}
+<h2>
+    Create</h2>
+@using (Html.BeginForm("Create", "Usuario", FormMethod.Post, new { @id = "mainForm", @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Usuario</legend>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">@Html.LabelFor(model => model.Username)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Username)
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">@Html.LabelFor(model => model.Senha)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Senha)
+                @Html.ValidationMessageFor(model => model.Senha)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">@Html.LabelFor(model => model.Email)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">@Html.LabelFor(model => model.Nome)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">@Html.LabelFor(model => model.Telefone)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Telefone)
+                @Html.ValidationMessageFor(model => model.Telefone)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">@Html.LabelFor(model => model.Imagem)</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Imagem)
+                @Html.ValidationMessageFor(model => model.Imagem)
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn" })
+        </div>
+    </fieldset>
+}
+<script>
+    $("#mainForm").validate({
+        highlight: function (element, errorClass) {
+            $(element).parents("div[class='control-group'] :eq(0)").addClass("control-group error");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents("div[class='control-group'] :eq(0)").removeClass("error");
+        },
+        rules: {
+            Username: "required",
+            Senha: "required"
+
+        },
+        messages: {
+            Username: "Campo Obrigatório",
+            Senha: "Campo Obrigatório"
+        }
+    });
+
+</script>
